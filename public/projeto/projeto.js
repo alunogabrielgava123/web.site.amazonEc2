@@ -5,7 +5,7 @@ document.body.onload = buscarDadosServidor;
 
 async function buscarDadosServidor() {
 
-    fetch("http://localhost:8000/servidor", {
+    fetch("http://18.230.110.34:8000/servidor", {
         method: 'GET'
     }).then((res) => res.json())
         .then(getData).catch((erro) => console.log(erro));
