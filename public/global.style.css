@@ -1,0 +1,20 @@
+body {
+    margin: 0 auto;
+}
+
+
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    padding: 0 10px 10px 10px;
+    border: 1px solid black;
+}
+
+
+
+.titulo-header {
+    color: cornsilk;
+    padding: 10px 20px 0;
+}
