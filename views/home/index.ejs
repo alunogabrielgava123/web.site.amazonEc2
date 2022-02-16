@@ -1,0 +1,48 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu site</title>
+<link href="/style/global.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+<header class="header">
+  <a href="/">Logo</a>
+  <nav>
+    <ul class="menu">
+      <li><a >Sobre</a></li>
+      <li><a>Conta</a></li>
+      <li><a>Carrinho</a></li>
+    </ul>
+  </nav>
+</header>
+
+<h1>Patinetes</h1>
+
+<section class="flex", id="itens">
+
+    <% for(let item of produtos.data) { %>
+        <div>
+             <a href="<%="/produto/" + item.id%>">
+                <img  src="<%=item.img%> ">
+            </a> 
+            <p>
+                <%=item.nome %> 
+            </p>
+            <p>
+                <%=item.price %> 
+            </p>
+            <p>
+                <%=item.promocao %> 
+            </p>
+        </div>
+    <% } %>
+
+</section>
+
+
+
+</body>
+
+</html>
