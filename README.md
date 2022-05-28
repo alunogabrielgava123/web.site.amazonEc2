@@ -16,7 +16,7 @@
 
 ##  Rodar react
 1. Entrar na pasta src 
-2. Rodar o comando  -> [npx babel --watch react_script  --out-dir . --presets react-app/prod]
+2. Rodar o comando  -> npx babel --watch react_script  --out-dir . --presets react-app/prod
 
 
 # Tecnologias usadas!!
