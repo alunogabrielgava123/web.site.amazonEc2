@@ -21,10 +21,14 @@ app.get('/desenvolvedores', (req, res, next) => {
     res.render('desenvolvedores');
 })
 
-app.get('/portifolio/jogo-minhoca', (req, res)=>{
-    res.render('portifolio/jogo_minhoca.ejs');
+
+app.get('/portifolio/jogo-cobra', (req, res)=>{
+    res.render('portifolio/jogo_cobra.ejs');
 });
 
+app.get('/portifolio/jogo-luz', (req, res)=>{
+    res.render('portifolio/jogo_luz.ejs');
+});
 
 app.get("/projeto", async (req, res, next) => {
     
