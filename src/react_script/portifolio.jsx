@@ -9,6 +9,17 @@ const PAGINA_STATE = {
     DEMOS: 5
 }
 
+//Funcao construtora de elementos
+function HeaderElementes(title, isCheck, callBack) {
+
+    return {
+        title: title,
+        isCheck: isCheck,
+        callBack: callBack
+    }
+
+}
+
 
 function Column(props) {
 
@@ -36,21 +47,25 @@ function Header(props) {
     };
 
 
-    const styleA = { textDecoration: "none", color: 'white' }
+    // const styleA = { textDecoration: "none", color: 'red' }
 
     return (
         <div style={styleHeader} >
             <ul style={{ display: 'flex' }}>
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateGames} style={styleA} href="">Games</p></li>
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateAndroid} style={styleA} href="">Android</p></li>
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateIos} style={styleA} href="">IOs</p></li>,
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateSite} style={styleA} href="">Sites</p></li>
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateStudos} style={styleA} href="">Estudos</p></li>
-                <li style={{ padding: '20px' }}>  <p onClick={props.stateDemos} style={styleA} href="">Demos</p></li>
+                {props.lista.map((e ,index) => (
+                    <li key={index} style={{ padding: '20px' }}>  <p onClick={e.callBack} style={{ cursor:'pointer', textDecoration: "none", color: e.isCheck ? 'purple' : 'white' , fontSize : '28px'}} >{e.title}</p></li>
+                ))}
             </ul>
         </div>
     );
 }
+
+{/* <li style={{ padding: '20px' }}>  <p onClick={props.stateGames} style={styleA} href="">Games</p></li>
+<li style={{ padding: '20px' }}>  <p onClick={props.stateAndroid} style={styleA} href="">Android</p></li>
+<li style={{ padding: '20px' }}>  <p onClick={props.stateIos} style={styleA} href="">IOs</p></li>,
+<li style={{ padding: '20px' }}>  <p onClick={props.stateSite} style={styleA} href="">Sites</p></li>
+<li style={{ padding: '20px' }}>  <p onClick={props.stateStudos} style={styleA} href="">Estudos</p></li>
+<li style={{ padding: '20px' }}>  <p onClick={props.stateDemos} style={styleA} href="">Demos</p></li> */}
 
 function Body(props) {
 
@@ -133,7 +148,6 @@ function Card(props) {
                                     {props.jogar}
                                 </a>
                             </div>
-
                         </div>
                     </div>
                 </Row>
@@ -147,27 +161,12 @@ function Card(props) {
 function Main() {
 
     const [statePage, setStatePage] = React.useState(PAGINA_STATE.GAMES);
+    const [stateIsCheck, setStateIsCheck] = React.useState([true, false, false, false]);
 
-    function stateGameChange() {
-        setStatePage(PAGINA_STATE.GAMES);
-    }
-    function stateAndroidChange() {
-        setStatePage(PAGINA_STATE.ANDROID);
-    }
-    function stateIosChange() {
-        setStatePage(PAGINA_STATE.IOS);
-    }
-    function stateSiteChange() {
-        setStatePage(PAGINA_STATE.SITE);
-    }
-    function stateEstudosChange() {
-        setStatePage(PAGINA_STATE.ESTUDOS);
-    }
-    function stateDemosChange() {
-        setStatePage(PAGINA_STATE.DEMOS);
-    }
+
 
     function bodyChange(statePage) {
+
         switch (statePage) {
             case 0:
                 return (
@@ -223,21 +222,60 @@ function Main() {
         }
     }
 
+    const elementos = [
+        HeaderElementes('Game', stateIsCheck[0], () => {
+            setStatePage(PAGINA_STATE.GAMES);
+            if (!stateIsCheck[0]) {
+                const newState = [];
+                newState[0] = true;
+                newState[1] = false;
+                newState[2] = false;
+                newState[3] = false;
+                setStateIsCheck(newState);
+            }
+        }),
+        HeaderElementes('Estudos', stateIsCheck[1], () => {
+            setStatePage(PAGINA_STATE.ESTUDOS);
+            if (!stateIsCheck[1]) {
+                const newState = [];
+                newState[0] = false;
+                newState[1] = true;
+                newState[2] = false;
+                newState[3] = false;
+                setStateIsCheck(newState);
+            }
+        }),
+        HeaderElementes('Android', stateIsCheck[2], () => {
+            setStatePage(PAGINA_STATE.ANDROID);
+            if (!stateIsCheck[2]) {
+                const newState = [];
+                newState[0] = false;
+                newState[1] = false
+                newState[2] = true;
+                newState[3] = false;
+                setStateIsCheck(newState);
+            }
+        }),
+        HeaderElementes('IOs', stateIsCheck[3], () => {
+            setStatePage(PAGINA_STATE.IOS);
+            if (!stateIsCheck[3]) {
+                const newState = [];
+                newState[0] = false;
+                newState[1] = false;
+                newState[2] = false;
+                newState[3] = true;
+                setStateIsCheck(newState);
+            }
+        }),
+    ]
 
 
 
     return (
         <Body name='body-container' >
             <Column name='column-container' size='0em'>
-                <Header
-                    stateGames={stateGameChange}
-                    stateAndroid={stateAndroidChange}
-                    stateIos={stateIosChange}
-                    stateSite={stateSiteChange}
-                    stateStudos={stateEstudosChange}
-                    stateDemos={stateDemosChange}
-                />
-                { bodyChange(statePage) }
+                <Header lista={elementos} />
+                {bodyChange(statePage)}
             </Column>
         </Body>
     );

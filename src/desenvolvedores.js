@@ -6,14 +6,12 @@ function Divid(props) {
     var style = {
         height: props.size
     };
-
     return React.createElement(
         'div',
         { style: style },
         ' '
     );
 }
-
 function Row(props) {
 
     return React.createElement(
@@ -78,20 +76,17 @@ function RowCard(props) {
 }
 
 function Column(props) {
-
     return React.createElement(
         'div',
-        { className: 'container-contente' },
+        { className: 'container-contente', style: { backgroundColor: props.color } },
         props.children
     );
 }
 
 function FooterChield(props) {
-
     var style = {
         padding: '10em'
     };
-
     return React.createElement(
         'div',
         { className: 'foo-chield', style: style },
@@ -169,7 +164,6 @@ function Footer(props) {
 }
 
 function Card(props) {
-
     //Estilo Card
     var styleCard = {
         padding: ' 2em',
@@ -186,9 +180,10 @@ function Card(props) {
     //Estilo nome
     var styleName = {
         display: 'flex',
+        color: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '30px',
+        fontSize: '34px',
         padding: ' 1em 1em 2em'
     };
 
@@ -197,7 +192,7 @@ function Card(props) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '18px',
+        fontSize: '20px',
         color: 'gray',
         padding: ' 0em 1em 2em'
     };
@@ -208,7 +203,7 @@ function Card(props) {
         height: '40px',
         justifyContent: 'center',
         alignItems: 'center',
-        background: 'black',
+        background: 'purple',
         color: 'white'
     };
 
@@ -263,13 +258,12 @@ function Main() {
 
     return React.createElement(
         Column,
-        null,
+        { color: 'black' },
         React.createElement(
             Row,
             { name: 'row-header' },
             React.createElement(Title, { title: 'Luna Sofware' })
         ),
-        React.createElement(Divid, { size: '10px' }),
         React.createElement(
             Row,
             { name: 'row-quem-somos' },

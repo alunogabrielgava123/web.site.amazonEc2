@@ -9,7 +9,16 @@ var PAGINA_STATE = {
     SITE: 3,
     ESTUDOS: 4,
     DEMOS: 5
-};
+
+    //Funcao construtora de elementos
+};function HeaderElementes(title, isCheck, callBack) {
+
+    return {
+        title: title,
+        isCheck: isCheck,
+        callBack: callBack
+    };
+}
 
 function Column(props) {
 
@@ -34,7 +43,7 @@ function Header(props) {
         backgroundColor: "black"
     };
 
-    var styleA = { textDecoration: "none", color: 'white' };
+    // const styleA = { textDecoration: "none", color: 'red' }
 
     return React.createElement(
         "div",
@@ -42,70 +51,28 @@ function Header(props) {
         React.createElement(
             "ul",
             { style: { display: 'flex' } },
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateGames, style: styleA, href: "" },
-                    "Games"
-                )
-            ),
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateAndroid, style: styleA, href: "" },
-                    "Android"
-                )
-            ),
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateIos, style: styleA, href: "" },
-                    "IOs"
-                )
-            ),
-            ",",
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateSite, style: styleA, href: "" },
-                    "Sites"
-                )
-            ),
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateStudos, style: styleA, href: "" },
-                    "Estudos"
-                )
-            ),
-            React.createElement(
-                "li",
-                { style: { padding: '20px' } },
-                "  ",
-                React.createElement(
-                    "p",
-                    { onClick: props.stateDemos, style: styleA, href: "" },
-                    "Demos"
-                )
-            )
+            props.lista.map(function (e, index) {
+                return React.createElement(
+                    "li",
+                    { key: index, style: { padding: '20px' } },
+                    "  ",
+                    React.createElement(
+                        "p",
+                        { onClick: e.callBack, style: { cursor: 'pointer', textDecoration: "none", color: e.isCheck ? 'red' : 'white', fontSize: '28px' } },
+                        e.title
+                    )
+                );
+            })
         )
     );
 }
+
+{/* <li style={{ padding: '20px' }}>  <p onClick={props.stateGames} style={styleA} href="">Games</p></li>
+    <li style={{ padding: '20px' }}>  <p onClick={props.stateAndroid} style={styleA} href="">Android</p></li>
+    <li style={{ padding: '20px' }}>  <p onClick={props.stateIos} style={styleA} href="">IOs</p></li>,
+    <li style={{ padding: '20px' }}>  <p onClick={props.stateSite} style={styleA} href="">Sites</p></li>
+    <li style={{ padding: '20px' }}>  <p onClick={props.stateStudos} style={styleA} href="">Estudos</p></li>
+    <li style={{ padding: '20px' }}>  <p onClick={props.stateDemos} style={styleA} href="">Demos</p></li> */}
 
 function Body(props) {
 
@@ -222,26 +189,13 @@ function Main() {
         statePage = _React$useState2[0],
         setStatePage = _React$useState2[1];
 
-    function stateGameChange() {
-        setStatePage(PAGINA_STATE.GAMES);
-    }
-    function stateAndroidChange() {
-        setStatePage(PAGINA_STATE.ANDROID);
-    }
-    function stateIosChange() {
-        setStatePage(PAGINA_STATE.IOS);
-    }
-    function stateSiteChange() {
-        setStatePage(PAGINA_STATE.SITE);
-    }
-    function stateEstudosChange() {
-        setStatePage(PAGINA_STATE.ESTUDOS);
-    }
-    function stateDemosChange() {
-        setStatePage(PAGINA_STATE.DEMOS);
-    }
+    var _React$useState3 = React.useState([true, false, false, false]),
+        _React$useState4 = _slicedToArray(_React$useState3, 2),
+        stateIsCheck = _React$useState4[0],
+        setStateIsCheck = _React$useState4[1];
 
     function bodyChange(statePage) {
+
         switch (statePage) {
             case 0:
                 return React.createElement(
@@ -297,20 +251,55 @@ function Main() {
         }
     }
 
+    var elementos = [HeaderElementes('Game', stateIsCheck[0], function () {
+        setStatePage(PAGINA_STATE.GAMES);
+        if (!stateIsCheck[0]) {
+            var newState = [];
+            newState[0] = true;
+            newState[1] = false;
+            newState[2] = false;
+            newState[3] = false;
+            setStateIsCheck(newState);
+        }
+    }), HeaderElementes('Estudos', stateIsCheck[1], function () {
+        setStatePage(PAGINA_STATE.ESTUDOS);
+        if (!stateIsCheck[1]) {
+            var newState = [];
+            newState[0] = false;
+            newState[1] = true;
+            newState[2] = false;
+            newState[3] = false;
+            setStateIsCheck(newState);
+        }
+    }), HeaderElementes('Android', stateIsCheck[2], function () {
+        setStatePage(PAGINA_STATE.ANDROID);
+        if (!stateIsCheck[2]) {
+            var newState = [];
+            newState[0] = false;
+            newState[1] = false;
+            newState[2] = true;
+            newState[3] = false;
+            setStateIsCheck(newState);
+        }
+    }), HeaderElementes('IOs', stateIsCheck[3], function () {
+        setStatePage(PAGINA_STATE.IOS);
+        if (!stateIsCheck[3]) {
+            var newState = [];
+            newState[0] = false;
+            newState[1] = false;
+            newState[2] = false;
+            newState[3] = true;
+            setStateIsCheck(newState);
+        }
+    })];
+
     return React.createElement(
         Body,
         { name: "body-container" },
         React.createElement(
             Column,
             { name: "column-container", size: "0em" },
-            React.createElement(Header, {
-                stateGames: stateGameChange,
-                stateAndroid: stateAndroidChange,
-                stateIos: stateIosChange,
-                stateSite: stateSiteChange,
-                stateStudos: stateEstudosChange,
-                stateDemos: stateDemosChange
-            }),
+            React.createElement(Header, { lista: elementos }),
             bodyChange(statePage)
         )
     );

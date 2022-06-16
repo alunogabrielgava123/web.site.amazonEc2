@@ -10,8 +10,8 @@
 ## Inicializar a aplicação
 1. Estar na raiz do projeto
 3. Baixar as dependencias com o comando -> npm install
-2. Rodar o comando npm start
-3. Entrar no http://localhost:8000
+2. Rodar o comando npm run dev 
+3. Entrar no http://localhost:3333
 
 
 ##  Rodar react
@@ -30,5 +30,20 @@
 <table>  
 
 
+# Nome da equipe
+
+<table>
+   <tr>
+     <td> Gabriel Gava Pinheiro <td>
+     <td> Rafael Yuki Tobaru <td>
+     <td> Vitor Leandro Machado <td>
+     <td>Samuel Pereira Cunha <td>
+   <tr> 
+<table>
+
+## Todos os direitos reservados a Luna Sofware
 
 
+## Descricao do projeto 
+
+Planejamento e organizacao pessoal, rural e empresarial

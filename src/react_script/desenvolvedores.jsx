@@ -7,15 +7,11 @@ function Divid(props) {
     const style = {
         height: props.size
     }
-
-
     return (
         <div style={style}  > </div>
     );
 
 }
-
-
 function Row(props) {
 
     return (
@@ -81,22 +77,18 @@ function RowCard(props) {
 }
 
 function Column(props) {
-
     return (
-        <div className='container-contente' >
+        <div className='container-contente' style={{ backgroundColor: props.color }} >
             {props.children}
         </div>
     );
-
 }
 
 
 function FooterChield(props) {
-
     const style = {
         padding: '10em'
     }
-
     return (
         <div className='foo-chield' style={style}>
             {props.children}
@@ -109,7 +101,7 @@ function Footer(props) {
     const footerStyle = {
         padding: "50px 50px 50px 50px",
         display: 'flex',
-        background : '#71A300'
+        background: '#71A300'
     }
 
 
@@ -139,9 +131,8 @@ function Footer(props) {
 }
 
 
+
 function Card(props) {
-
-
     //Estilo Card
     const styleCard = {
         padding: ' 2em',
@@ -158,9 +149,10 @@ function Card(props) {
     //Estilo nome
     const styleName = {
         display: 'flex',
+        color: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '30px',
+        fontSize: '34px',
         padding: ' 1em 1em 2em'
     };
 
@@ -169,7 +161,7 @@ function Card(props) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '18px',
+        fontSize: '20px',
         color: 'gray',
         padding: ' 0em 1em 2em'
     };
@@ -180,7 +172,7 @@ function Card(props) {
         height: '40px',
         justifyContent: 'center',
         alignItems: 'center',
-        background: 'black',
+        background: 'purple',
         color: 'white'
     };
 
@@ -218,14 +210,15 @@ function Card(props) {
     );
 }
 
+
+
 function Main() {
 
     return (
-        <Column>
+        <Column color = 'black'>
             <Row name="row-header" >
                 <Title title="Luna Sofware" />
             </Row>
-            <Divid size='10px' />
             <Row name="row-quem-somos" >
                 <TitleProjeto name='Lunaticos' />
             </Row>
