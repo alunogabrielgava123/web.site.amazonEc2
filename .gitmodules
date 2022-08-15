@@ -1,0 +1,3 @@
+[submodule "web.site.amazonEc2"]
+	path = web.site.amazonEc2
+	url = https://github.com/alunogabrielgava123/web.site.amazonEc2.git
